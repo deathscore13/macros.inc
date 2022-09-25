@@ -139,6 +139,7 @@ public void OnPluginStart()
 }
 ```
 
+<br><br>
 ## Пример использования токенов (стабильно работает только в spcomp_mod)
 **`main.sp`**
 ```sp
