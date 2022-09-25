@@ -1,5 +1,5 @@
 /**
- * Макросы для SourceMod 1.10+
+ * Макросы для SourceMod 1.10
  * 
  * https://github.com/deathscore13/Macros
  */
