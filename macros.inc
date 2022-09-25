@@ -368,7 +368,7 @@
 
 
 #if defined SPCOMP_MOD
-// Токены
+// Токены (стабильно работает только в spcomp_mod)
 #define elseif else if
 #define elif else if
 #endif
