@@ -1,3 +1,9 @@
+/**
+ * Макросы для SourceMod 1.10+
+ * 
+ * https://github.com/deathscore13/Macros
+ */
+
 #if defined _macros_included
  #endinput
 #endif
