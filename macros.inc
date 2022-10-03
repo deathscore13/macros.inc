@@ -43,8 +43,7 @@
  * 
  * @param %1        Имя переменной
  * @param %2        Позиция (0-31)
- * 
- * @return          true или false
+ * @param %2        Переменная
  */
 #define bSET(%1,%2,%3) view_as<int>(%1) = view_as<int>(%3) == 0 ? view_as<int>(%1) & ~(1 << %2) : view_as<int>(%1) | 1 << %2
 
