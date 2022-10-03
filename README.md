@@ -30,6 +30,15 @@ public void OnPluginStart()
     
     // проверка зануления ONE
     PrintToServer("%b | %b", bVar1, bGET(bVar1, ONE));
+    
+    // создание переменной с значением true (не 0)
+    int var1 = 123;
+    
+    // присваивание ONE значение var1
+    bSET(bVar1, ONE, var1);
+    
+    // проверка установленных значений
+    PrintToServer("%b | %b", bVar1, bGET(bVar1, ONE));
 }
 ```
 
