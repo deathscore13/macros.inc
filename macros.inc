@@ -39,14 +39,14 @@
 
 /**
  * Установка значения переменной
- * Только 1/0; если значение является константой, то используйте bTRUE/bFALSE
+ * Если значение является константой, то используйте bTRUE/bFALSE
  * 
  * @param %1        Имя переменной
  * @param %2        Позиция (0-31)
  * 
  * @return          true или false
  */
-#define bSET(%1,%2,%3) view_as<int>(%1) = view_as<int>(%3) & 1 ? view_as<int>(%1) | 1 << %2 : view_as<int>(%1) & ~(1 << %2)
+#define bSET(%1,%2,%3) view_as<int>(%1) = view_as<int>(%3) == 0 ? view_as<int>(%1) & ~(1 << %2) : view_as<int>(%1) | 1 << %2
 
 
 /**
