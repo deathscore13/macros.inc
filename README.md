@@ -24,13 +24,13 @@ public void OnPluginStart()
     bTRUE(bVar1, TWO);
     
     // любое не 0 значение считается за true, но если нужен 1, то необходимо использовать !! перед bGET()
-    PrintToServer("%b | %b | %b", bVar1, bGET(bVar1, TWO), !!bGET(bVar1, TWO));
+    PrintToServer("%b | %b | %b", bVar1[1], bGET(bVar1, TWO), !!bGET(bVar1, TWO));
     
     // присваивание ONE значение false
     bFALSE(bVar1, ONE);
     
     // проверка зануления ONE
-    PrintToServer("%b | %b", bVar1, bGET(bVar1, ONE));
+    PrintToServer("%b | %b", bVar1[1], bGET(bVar1, ONE));
     
     // создание переменной с значением true (не 0)
     int var1 = 123;
@@ -39,7 +39,7 @@ public void OnPluginStart()
     bSET(bVar1, ONE, var1);
     
     // проверка установленных значений
-    PrintToServer("%b | %b", bVar1, bGET(bVar1, ONE));
+    PrintToServer("%b | %b", bVar1[1], bGET(bVar1, ONE));
 }
 ```
 
