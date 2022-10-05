@@ -89,14 +89,54 @@ public void OnPluginStart()
 ```sp
 public void OnPluginStart()
 {
-    // объявление массива
-    char buffer[32];
+    // объявление массивов
+    char buffer[32],
+        buffer2[1][32],
+        buffer3[1][1][32],
+        buffer4[1][1][1][32],
+        buffer5[1][1][1][1][32],
+        buffer6[1][1][1][1][1][32];
     
     // вместо buffer, sizeof(buffer) используем sz(buffer)
     strcopy(sz(buffer), "test");
     
     // вывод значения
     PrintToServer(buffer);
+    
+    
+    // вместо buffer2[0], sizeof(buffer2[]) используем sz2(buffer2, 0)
+    strcopy(sz2(buffer2, 0), "test2");
+    
+    // вывод значения
+    PrintToServer(buffer2[0]);
+    
+    
+    // вместо buffer3[0][0], sizeof(buffer3[][]) используем sz3(buffer3, 0, 0)
+    strcopy(sz3(buffer3, 0, 0), "test3");
+    
+    // вывод значения
+    PrintToServer(buffer3[0][0]);
+    
+    
+    // вместо buffer4[0][0][0], sizeof(buffer4[][][]) используем sz4(buffer4, 0, 0, 0)
+    strcopy(sz4(buffer4, 0, 0, 0), "test4");
+    
+    // вывод значения
+    PrintToServer(buffer4[0][0][0]);
+    
+    
+    // вместо buffer5[0][0][0][0], sizeof(buffer5[][][][]) используем sz5(buffer5, 0, 0, 0, 0)
+    strcopy(sz5(buffer5, 0, 0, 0, 0), "test5");
+    
+    // вывод значения
+    PrintToServer(buffer5[0][0][0][0]);
+    
+    
+    // вместо buffer6[0][0][0][0][0], sizeof(buffer6[][][][][]) используем sz6(buffer6, 0, 0, 0, 0, 0)
+    strcopy(sz6(buffer6, 0, 0, 0, 0, 0), "test6");
+    
+    // вывод значения
+    PrintToServer(buffer6[0][0][0][0][0]);
 }
 ```
 
