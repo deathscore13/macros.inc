@@ -63,7 +63,7 @@
  * @param %1        Имя переменной
  * @param %2        Позиция (можно более 31)
  */
-#define bTRUE_EX(%1,%2) view_as<int>(%1[(%2) / MAX_INT_BITS]) |= 1 << %2
+#define bTRUE_EX(%1,%2) view_as<int>(%1[(%2) / MAX_INT_BITS]) |= 1 << (%2)
 
 /**
  * Присваивает false переменной
@@ -71,7 +71,7 @@
  * @param %1        Имя переменной
  * @param %2        Позиция (можно более 31)
  */
-#define bFALSE_EX(%1,%2) view_as<int>(%1[(%2) / MAX_INT_BITS]) &= ~(1 << %2)
+#define bFALSE_EX(%1,%2) view_as<int>(%1[(%2) / MAX_INT_BITS]) &= ~(1 << (%2))
 
 /**
  * Получение значения переменной
@@ -82,7 +82,7 @@
  * 
  * @return          true или false
  */
-#define bGET_EX(%1,%2) (view_as<int>(%1[(%2) / MAX_INT_BITS]) & 1 << %2)
+#define bGET_EX(%1,%2) (view_as<int>(%1[(%2) / MAX_INT_BITS]) & 1 << (%2))
 
 /**
  * Установка значения переменной
@@ -90,18 +90,24 @@
  * 
  * @param %1        Имя переменной
  * @param %2        Позиция (можно более 31)
- * @param %2        Значение
+ * @param %3        Значение
  */
-#define bSET_EX(%1,%2,%3) view_as<int>(%1[(%2) / MAX_INT_BITS]) = %3 ? view_as<int>(%1[%2 / MAX_INT_BITS]) | 1 << %2 : \
-    view_as<int>(%1[%2 / MAX_INT_BITS]) & ~(1 << %2)
+#define bSET_EX(%1,%2,%3) view_as<int>(%1[(%2) / MAX_INT_BITS]) = %3 ? view_as<int>(%1[(%2) / MAX_INT_BITS]) | 1 << (%2) : \
+    view_as<int>(%1[(%2) / MAX_INT_BITS]) & ~(1 << (%2))
 
 
 /**
  * Использование массива как буфер (имя переменной и размер)
  * 
  * @param %1        Имя переменной
+ * ...              Индексы
  */
 #define sz(%1) %1, sizeof(%1)
+#define sz2(%1,%2) %1[%2], sizeof(%1[])
+#define sz3(%1,%2,%3) %1[%2][%3], sizeof(%1[][])
+#define sz4(%1,%2,%3,%4) %1[%2][%3][%4], sizeof(%1[][][])
+#define sz5(%1,%2,%3,%4,%5) %1[%2][%3][%4][%5], sizeof(%1[][][][])
+#define sz6(%1,%2,%3,%4,%5,%6) %1[%2][%3][%4][%5][%6], sizeof(%1[][][][][])
 
 
 /**
