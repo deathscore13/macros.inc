@@ -87,6 +87,8 @@ public void OnPluginStart()
 ## Пример использования массива как буфер
 **`main.sp`**
 ```sp
+// кроме szN есть ещё szlenN. разница лишь в том, что szlen преобразует в buffer, strlen(buffer)
+
 public void OnPluginStart()
 {
     // объявление массивов
