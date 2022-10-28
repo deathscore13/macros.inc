@@ -210,10 +210,3 @@
     %2_4 * %2_5 * %2_6 / (%2_4 - %6) - \
     %2_5 * %2_6 / (%2_5 - %7) \
     + %8]
-
-
-#if defined SPCOMP_MOD
-// Токены (стабильно работает только в spcomp_mod)
-#define elseif else if
-#define elif else if
-#endif
