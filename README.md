@@ -1,7 +1,7 @@
 # Macros
 ### Макросы для SourceMod 1.7+<br><br>
 
-Содержит сокращения для: хранения 32 значений `bool` в одной переменной, хранение более 32 значений `bool` в массиве, использования массива как буфер и оптимизации многомерных массивов (2-6)<br><br>
+Содержит сокращения для: хранения 32 значений `bool` в одной переменной, хранение более 32 значений `bool` в массиве, использования массива как буфер, оптимизации многомерных массивов и оптимизации стандартных многомерных массивов (только для `spcomp_mod`)<br><br>
 **НЕ ИСПОЛЬЗУЙТЕ** макросы для оптимизации многомерных массивов, если индекс не является константой, т.к. в таком случае вычисления будут происходить при выполнении, а не компиляции
 
 <br><br>
@@ -95,9 +95,7 @@ public void OnPluginStart()
     char buffer[32],
         buffer2[1][32],
         buffer3[1][1][32],
-        buffer4[1][1][1][32],
-        buffer5[1][1][1][1][32],
-        buffer6[1][1][1][1][1][32];
+        buffer4[1][1][1][32];
     
     // вместо buffer, sizeof(buffer) используем sz(buffer)
     strcopy(sz(buffer), "test");
@@ -125,20 +123,6 @@ public void OnPluginStart()
     
     // вывод значения
     PrintToServer(buffer4[0][0][0]);
-    
-    
-    // вместо buffer5[0][0][0][0], sizeof(buffer5[][][][]) используем sz5(buffer5, 0, 0, 0, 0)
-    strcopy(sz5(buffer5, 0, 0, 0, 0), "test5");
-    
-    // вывод значения
-    PrintToServer(buffer5[0][0][0][0]);
-    
-    
-    // вместо buffer6[0][0][0][0][0], sizeof(buffer6[][][][][]) используем sz6(buffer6, 0, 0, 0, 0, 0)
-    strcopy(sz6(buffer6, 0, 0, 0, 0, 0), "test6");
-    
-    // вывод значения
-    PrintToServer(buffer6[0][0][0][0][0]);
 }
 ```
 
@@ -161,62 +145,64 @@ public void OnPluginStart()
 #define SIZE4_3 2
 #define SIZE4_4 32
 
-// размер пятимерного массива
-#define SIZE5_1 2
-#define SIZE5_2 2
-#define SIZE5_3 2
-#define SIZE5_4 2
-#define SIZE5_5 32
-
-// размер шестимерного массива
-#define SIZE6_1 2
-#define SIZE6_2 2
-#define SIZE6_3 2
-#define SIZE6_4 2
-#define SIZE6_5 2
-#define SIZE6_6 32
-
 // объявление многомерных массивов
 char ARR2_CREATE(arr2, SIZE2),
     ARR3_CREATE(arr3, SIZE3),
-    ARR4_CREATE(arr4, SIZE4),
-    ARR5_CREATE(arr5, SIZE5),
-    ARR6_CREATE(arr6, SIZE6);
+    ARR4_CREATE(arr4, SIZE4);
 
 public void OnPluginStart()
 {
     // запись в двумерный массив
-    FormatEx(ARR2_WRITE(arr2, SIZE2, 0, 0), "test2");
+    strcopy(ARR2_WRITE(arr2, SIZE2, 0, 0), "test2");
     
     // чтение из двумерного массива
-    PrintToServer("%s", ARR2_POS(arr2, SIZE2, 0, 0));
+    PrintToServer(ARR2_POS(arr2, SIZE2, 0, 0));
     
     
     // запись в трёхмерный массив
-    FormatEx(ARR3_WRITE(arr3, SIZE3, 0, 0, 0), "test3");
+    strcopy(ARR3_WRITE(arr3, SIZE3, 0, 0, 0), "test3");
     
     // чтение из трёхмерного массива
-    PrintToServer("%s", ARR3_POS(arr3, SIZE3, 0, 0, 0));
+    PrintToServer(ARR3_POS(arr3, SIZE3, 0, 0, 0));
     
     
     // запись в четырёхмерный массив
-    FormatEx(ARR4_WRITE(arr4, SIZE4, 0, 0, 0, 0), "test4");
+    strcopy(ARR4_WRITE(arr4, SIZE4, 0, 0, 0, 0), "test4");
     
     // чтение из четырёхмерного массива
-    PrintToServer("%s", ARR4_POS(arr4, SIZE4, 0, 0, 0, 0));
+    PrintToServer(ARR4_POS(arr4, SIZE4, 0, 0, 0, 0));
+}
+```
+
+<br><br>
+## Пример оптимизиции стандартных многомерных массивов (только для `spcomp_mod`)
+**`main.sp`**
+```sp
+// объявление многомерных массивов
+char arr2[2][32],
+    arr3[3][2][32],
+    arr4[4][3][2][32];
+
+public void OnPluginStart()
+{
+    // запись в двумерный массив
+    strcopy(ARR2_WRITE_EX(arr2, 0, 0), "test2");
+    
+    // чтение из двумерного массива
+    PrintToServer(ARR2_POS_EX(arr2, 0, 0));
     
     
-    // запись в пятимерный массив
-    FormatEx(ARR5_WRITE(arr5, SIZE5, 0, 0, 0, 0, 0), "test5");
+    // запись в трёхмерный массив
+    strcopy(ARR3_WRITE_EX(arr3, 0, 0, 0), "test3");
     
-    // чтение из пятимерного массива
-    PrintToServer("%s", ARR5_POS(arr5, SIZE5, 0, 0, 0, 0, 0));
+    // чтение из трёхмерного массива
+    PrintToServer(ARR3_POS_EX(arr3, 0, 0, 0));
     
     
-    // запись в шестимерный массив
-    FormatEx(ARR6_WRITE(arr6, SIZE6, 0, 0, 0, 0, 0, 0), "test6");
+    // запись в четырёхмерный массив
+    strcopy(ARR4_WRITE_EX(arr4, 0, 0, 0, 0), "test4");
     
-    // чтение из шестимерного массива
-    PrintToServer("%s", ARR6_POS(arr6, SIZE6, 0, 0, 0, 0, 0, 0));
+    // чтение из четырёхмерного массива
+    PrintToServer(ARR4_POS_EX(arr4, 0, 0, 0, 0));
 }
 ```
