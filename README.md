@@ -8,6 +8,9 @@
 ## Пример хранения 32-х значений `bool` в одной переменной
 **`main.sp`**
 ```sp
+// подключение macros.inc
+#include <macros>
+
 // чтобы не запутаться используем имена вместо цифр (диапазон: 0-31)
 #define ONE 0
 #define TWO 1
@@ -47,6 +50,9 @@ public void OnPluginStart()
 ## Пример хранения более 32-х значений `bool` в массиве
 **`main.sp`**
 ```sp
+// подключение macros.inc
+#include <macros>
+
 // чтобы не запутаться используем имена вместо цифр
 #define ONE 32
 #define TWO 33
@@ -87,7 +93,12 @@ public void OnPluginStart()
 ## Пример использования массива как буфер
 **`main.sp`**
 ```sp
-// кроме szN есть ещё szlenN. разница лишь в том, что szlen преобразует в buffer, strlen(buffer)
+// подключение macros.inc
+#include <macros>
+
+/**
+ * кроме szN есть ещё szlenN. разница лишь в том, что szlen преобразует в buffer, strlen(buffer)
+ */
 
 public void OnPluginStart()
 {
@@ -130,6 +141,9 @@ public void OnPluginStart()
 ## Пример оптимизиции многомерных массивов
 **`main.sp`**
 ```sp
+// подключение macros.inc
+#include <macros>
+
 // размер двумерного массива
 #define SIZE2_1 2
 #define SIZE2_2 32
@@ -178,6 +192,12 @@ public void OnPluginStart()
 ## Пример оптимизиции стандартных многомерных массивов (только для `spcomp_mod`)
 **`main.sp`**
 ```sp
+// подключение дополнительных возможностей spcomp_mod
+#include <memory>
+
+// подключение macros.inc
+#include <macros>
+
 // объявление многомерных массивов
 char arr2[2][32],
     arr3[3][2][32],
