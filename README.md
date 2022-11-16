@@ -62,7 +62,7 @@ public void OnPluginStart()
 bool bCREATE_EX(bVar1, MAX);
 
 /**
- * Можно использовать массивы. пример:
+ * Можно использовать массивы. Пример:
  *  bool bCREATE_EX(bVar1[MAXPLAYERS + 1], MAX);
  *  bTRUE_EX(bVar1[20], ONE);
  */
