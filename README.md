@@ -61,6 +61,12 @@ public void OnPluginStart()
 // объявление переменной. может быть записано в бд как char[(MAX / 32 + 1) * 4]; MAX / 32 округлён к меньшему
 bool bCREATE_EX(bVar1, MAX);
 
+/**
+ * Можно использовать массивы. пример:
+ *  bool bCREATE_EX(bVar1[MAXPLAYERS + 1], MAX);
+ *  bTRUE_EX(bVar1[20], ONE);
+ */
+
 public void OnPluginStart()
 {
     // присваивание ONE значение true
@@ -185,44 +191,5 @@ public void OnPluginStart()
     
     // чтение из четырёхмерного массива
     PrintToServer(ARR4_POS(arr4, SIZE4, 0, 0, 0, 0));
-}
-```
-
-<br><br>
-## Пример оптимизиции стандартных многомерных массивов (только для `spcomp_mod`)
-**`main.sp`**
-```sp
-// подключение дополнительных возможностей spcomp_mod
-#include <memory>
-
-// подключение macros.inc
-#include <macros>
-
-// объявление многомерных массивов
-char arr2[2][32],
-    arr3[3][2][32],
-    arr4[4][3][2][32];
-
-public void OnPluginStart()
-{
-    // запись в двумерный массив
-    strcopy(ARR2_WRITE_EX(arr2, 0, 0), "test2");
-    
-    // чтение из двумерного массива
-    PrintToServer(ARR2_POS_EX(arr2, 0, 0));
-    
-    
-    // запись в трёхмерный массив
-    strcopy(ARR3_WRITE_EX(arr3, 0, 0, 0), "test3");
-    
-    // чтение из трёхмерного массива
-    PrintToServer(ARR3_POS_EX(arr3, 0, 0, 0));
-    
-    
-    // запись в четырёхмерный массив
-    strcopy(ARR4_WRITE_EX(arr4, 0, 0, 0, 0), "test4");
-    
-    // чтение из четырёхмерного массива
-    PrintToServer(ARR4_POS_EX(arr4, 0, 0, 0, 0));
 }
 ```
