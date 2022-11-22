@@ -9,7 +9,7 @@
 #endif
 #define _macros_included
 
-#if !defined SPCOMP_MOD
+#if !defined CHAR_BIT
 #define CHAR_BIT 32     /**< Максимальное количество бит */
 #endif
 
