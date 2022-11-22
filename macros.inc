@@ -9,7 +9,9 @@
 #endif
 #define _macros_included
 
-#define MAX_INT_BITS 32     /**< Максимальное количество бит в int */
+#if !defined SPCOMP_MOD
+#define CHAR_BIT 32     /**< Максимальное количество бит */
+#endif
 
 /**
  * Округление %0
@@ -75,7 +77,7 @@
  * @param %0        Имя переменной
  * @param %1        Максимальное количество позиций
  */
-#define bCREATE_EX(%0,%1) %0[(%1) / MAX_INT_BITS + 1]
+#define bCREATE_EX(%0,%1) %0[(%1) / CHAR_BIT + 1]
 
 /**
  * Присваивает true переменной
@@ -83,7 +85,7 @@
  * @param %0        Имя переменной
  * @param %1        Позиция (можно более 31)
  */
-#define bTRUE_EX(%0,%1) view_as<int>(%0[(%1) / MAX_INT_BITS]) |= 1 << (%1)
+#define bTRUE_EX(%0,%1) view_as<int>(%0[(%1) / CHAR_BIT]) |= 1 << (%1)
 
 /**
  * Присваивает false переменной
@@ -91,7 +93,7 @@
  * @param %0        Имя переменной
  * @param %1        Позиция (можно более 31)
  */
-#define bFALSE_EX(%0,%1) view_as<int>(%0[(%1) / MAX_INT_BITS]) ^= 1 << (%1)
+#define bFALSE_EX(%0,%1) view_as<int>(%0[(%1) / CHAR_BIT]) ^= 1 << (%1)
 
 /**
  * Получение значения переменной
@@ -102,7 +104,7 @@
  * 
  * @return          true или false
  */
-#define bGET_EX(%0,%1) (view_as<int>(%0[(%1) / MAX_INT_BITS]) & 1 << (%1))
+#define bGET_EX(%0,%1) (view_as<int>(%0[(%1) / CHAR_BIT]) & 1 << (%1))
 
 /**
  * Установка значения переменной
@@ -112,8 +114,8 @@
  * @param %1        Позиция (можно более 31)
  * @param %2        Значение
  */
-#define bSET_EX(%0,%1,%2) view_as<int>(%0[(%1) / MAX_INT_BITS]) = %2 ? view_as<int>(%0[(%1) / MAX_INT_BITS]) | 1 << (%1) : \
-    view_as<int>(%0[(%1) / MAX_INT_BITS]) ^ (1 << (%1))
+#define bSET_EX(%0,%1,%2) view_as<int>(%0[(%1) / CHAR_BIT]) = %2 ? view_as<int>(%0[(%1) / CHAR_BIT]) | 1 << (%1) : \
+    view_as<int>(%0[(%1) / CHAR_BIT]) ^ (1 << (%1))
 
 
 /**
