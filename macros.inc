@@ -47,7 +47,7 @@
  * @param %0        Имя переменной
  * @param %1        Позиция (0-31)
  */
-#define bFALSE(%0,%1) view_as<int>(%0) ^= 1 << (%1)
+#define bFALSE(%0,%1) view_as<int>(%0) &= ~(1 << (%1))
 
 /**
  * Получение значения переменной
@@ -68,7 +68,7 @@
  * @param %1        Позиция (0-31)
  * @param %2        Переменная
  */
-#define bSET(%0,%1,%2) view_as<int>(%0) = %2 ? view_as<int>(%0) | 1 << (%1) : view_as<int>(%0) ^ (1 << (%1))
+#define bSET(%0,%1,%2) view_as<int>(%0) = %2 ? view_as<int>(%0) | 1 << (%1) : view_as<int>(%0) & ~(1 << (%1))
 
 
 /**
@@ -93,7 +93,7 @@
  * @param %0        Имя переменной
  * @param %1        Позиция (можно более 31)
  */
-#define bFALSE_EX(%0,%1) view_as<int>(%0[(%1) / CHAR_BIT]) ^= 1 << (%1)
+#define bFALSE_EX(%0,%1) view_as<int>(%0[(%1) / CHAR_BIT]) &= ~(1 << (%1))
 
 /**
  * Получение значения переменной
@@ -115,7 +115,7 @@
  * @param %2        Значение
  */
 #define bSET_EX(%0,%1,%2) view_as<int>(%0[(%1) / CHAR_BIT]) = %2 ? view_as<int>(%0[(%1) / CHAR_BIT]) | 1 << (%1) : \
-    view_as<int>(%0[(%1) / CHAR_BIT]) ^ (1 << (%1))
+    view_as<int>(%0[(%1) / CHAR_BIT]) & ~(1 << (%1))
 
 
 /**
