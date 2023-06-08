@@ -1,7 +1,8 @@
 /**
+ * macros.inc
+ *
  * Макросы для SourceMod 1.7+
- * 
- * https://github.com/deathscore13/Macros
+ * https://github.com/deathscore13/macros.inc
  */
 
 #if defined _macros_included
