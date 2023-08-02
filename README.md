@@ -12,6 +12,8 @@
 ## Пример хранения 32-х значений `bool` в одной переменной
 **`main.sp`**
 ```sp
+#include <sourcemod>
+
 // подключение macros.inc
 #include <macros>
 
@@ -54,6 +56,8 @@ public void OnPluginStart()
 ## Пример хранения более 32-х значений `bool` в массиве
 **`main.sp`**
 ```sp
+#include <sourcemod>
+
 // подключение macros.inc
 #include <macros>
 
@@ -103,6 +107,8 @@ public void OnPluginStart()
 ## Пример использования массива как буфер
 **`main.sp`**
 ```sp
+#include <sourcemod>
+
 // подключение macros.inc
 #include <macros>
 
@@ -151,6 +157,8 @@ public void OnPluginStart()
 ## Пример оптимизиции многомерных массивов
 **`main.sp`**
 ```sp
+#include <sourcemod>
+
 // подключение macros.inc
 #include <macros>
 
